@@ -18,6 +18,7 @@ class SegmentedModelABC(ABC):
 
     def __init__(self, voxel_model: VoxelModel, element_class):
         self.voxel_model = voxel_model
+        self.model_type = None
         self.name = self._init_model_name()
         self.mse = None
         self._model_structure = {}
@@ -54,9 +55,8 @@ class SegmentedModelABC(ABC):
         """
         pass
 
-    @abstractmethod
     def _init_model_name(self):
-        pass
+        return f"{self.model_type}_from_{self.voxel_model.name}"
 
     def _create_model_structure(self, element_class):
         """

@@ -1,3 +1,4 @@
+from app.dem_models.bi_model.BiModel import BiModel
 from app.dem_models.dem_model.DemModel import DemModel
 from app.utils.logs.console_log_config import console_logger
 
@@ -18,4 +19,9 @@ print(vm)
 dem = DemModel(voxel_model=vm)
 print(dem)
 # vm.plot()
-dem.plot()
+# dem.plot()
+
+bi_dem = BiModel(base_model=dem, enable_mse=True)
+
+print(bi_dem)
+bi_dem.plot()

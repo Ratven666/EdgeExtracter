@@ -14,9 +14,6 @@ class DemModel(SegmentedModelABC):
         super().__init__(voxel_model, self.cell_type)
         self._calk_segment_model()
 
-    def _init_model_name(self):
-        return f"{self.model_type}_from_{self.voxel_model.name}"
-
     def _calk_segment_model(self):
         """
         Метод определяющий логику создания стандартной DEM модели
