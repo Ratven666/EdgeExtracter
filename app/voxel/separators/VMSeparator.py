@@ -8,9 +8,9 @@ class VMSeparator:
         self.voxel_structure = None
 
     def separate_voxel_model(self, voxel_model, scan):
-        voxel_model.logger.info(f"Начато создание структуры {voxel_model.vm_name}")
+        voxel_model.logger.info(f"Начато создание структуры {voxel_model.name}")
         self.__create_full_vxl_struct(voxel_model)
-        voxel_model.logger.info(f"Структура {voxel_model.vm_name} создана")
+        voxel_model.logger.info(f"Структура {voxel_model.name} создана")
         voxel_model.logger.info(f"Начат расчет метрик сканов и вокселей")
         self.__update_scan_and_voxel_data(scan)
         voxel_model.logger.info(f"Расчет метрик сканов и вокселей завершен")

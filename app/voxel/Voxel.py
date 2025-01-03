@@ -29,12 +29,12 @@ class Voxel:
 
     def __str__(self):
         return (f"{self.__class__.__name__} "
-                f"[\tName: {self.name}\t\t"
-                f"X: {round(self.x, 5)}\tY: {round(self.y, 5)}\tZ: {round(self.z, 5)}]"
+                f"[X: {round(self.x, 5)}\tY: {round(self.y, 5)}\tZ: {round(self.z, 5)},\t"
+                f"len: {self.len}\tcolor: {self.color}]"
                 )
 
     def __repr__(self):
-        return f"{self.__class__.__name__} [Name: {self.name}]"
+        return f"{self.__class__.__name__} [Name: {self.len}]"
 
     def __len__(self):
         return self.len

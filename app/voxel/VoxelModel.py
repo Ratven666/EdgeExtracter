@@ -14,7 +14,7 @@ class VoxelModel:
         self.is_2d_vxl_mdl = is_2d_vxl_mdl
         self.step = float(step)
         self.dx, self.dy, self.dz = self.__dx_dy_dz_formatter(dx, dy, dz)
-        self.vm_name: str = self.__name_generator(scan)
+        self.name: str = self.__name_generator(scan)
         self.len: int = 0
         self.x_count, self.y_count, self.z_count = None, None, None
         self.x_min, self.x_max = None, None
@@ -84,7 +84,7 @@ class VoxelModel:
 
     def __str__(self):
         return f"{self.__class__.__name__} " \
-               f"[Name: {self.vm_name}\tLEN: (x:{self.x_count} * y:{self.y_count} *" \
+               f"[Name: {self.name}\tLEN: (x:{self.x_count} * y:{self.y_count} *" \
                f" z:{self.z_count})={self.len}]"
 
     def __repr__(self):
