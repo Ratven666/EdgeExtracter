@@ -42,7 +42,7 @@ class SegmentedModelABC(ABC):
         """
         cell = self.get_model_element_for_point(point)
         try:
-            z = cell.get_z_from_xy(point.x, point.z)
+            z = cell.get_z_from_xy(point.x, point.y)
         except AttributeError:
             z = None
         return z

@@ -2,15 +2,15 @@ from skimage import feature, io, filters
 import matplotlib.pyplot as plt
 
 # Загружаем изображение
-image = io.imread('output_image.tiff', as_gray=True)
-
-# Применяем оператор Кэнни
-edges = feature.canny(image, sigma=1.0)  # sigma регулирует размытие
-
-# Показываем результат
-plt.imshow(edges, cmap='gray')
-plt.title('Canny Edge Detection (scikit-image)')
-plt.show()
+# image = io.imread('output_image.tiff', as_gray=True)
+#
+# # Применяем оператор Кэнни
+# edges = feature.canny(image, sigma=1.0)  # sigma регулирует размытие
+#
+# # Показываем результат
+# plt.imshow(edges, cmap='gray')
+# plt.title('Canny Edge Detection (scikit-image)')
+# plt.show()
 
 
 # # Загружаем изображение
@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 
 # Загружаем изображение в градациях серого
 # image = cv2.imread('output_image.tiff', cv2.IMREAD_GRAYSCALE)
-image = cv2.imread('output_image.tiff', cv2.IMREAD_GRAYSCALE)
+image = cv2.imread('denoised_image.png', cv2.IMREAD_GRAYSCALE)
 
 # Применяем оператор Кэнни
 edges = cv2.Canny(image, threshold1=100, threshold2=200)

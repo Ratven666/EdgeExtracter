@@ -106,6 +106,7 @@ class DEMIndexABC(ABC):
 
     def save_like_img(self, file_path):
         data = deepcopy(self.model_indexes)
+        data = data[::-1, :]
 
         # Заменяем None на минимальное значение массива (или другое подходящее значение)
         min_value = np.nanmin(np.where(data == None, np.nan, data))  # Игнорируем None
