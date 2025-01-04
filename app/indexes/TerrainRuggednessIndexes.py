@@ -70,7 +70,6 @@ class TerrainRuggednessIndexABSValue(TerrainRuggednessIndexABC):
         super().__init__(dem_model, full_neighbours)
         self.index_name = "TRI_ABS_Value"
 
-
     def _do_prepare_calculation(self, neighbour):
         self.value += abs(neighbour - self.base_val)
         self.n += 1

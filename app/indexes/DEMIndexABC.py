@@ -118,5 +118,3 @@ class DEMIndexABC(ABC):
         data_normalized = data_normalized.astype(np.uint16)
         image = Image.fromarray(data_normalized)
         image.save(file_path)
-
-
