@@ -134,3 +134,11 @@ src/cloud_1.las
 src/cloud_1.txt
 
 src/cloud_1_d100.txt
+
+*.tif
+
+src/scan_from_dem.txt
+
+*.tiff
+
+*.png

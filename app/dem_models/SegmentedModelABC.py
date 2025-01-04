@@ -101,7 +101,7 @@ class SegmentedModelABC(ABC):
             self.mse = (vv / sum_of_r) ** 0.5
         except ZeroDivisionError:
             self.mse = None
-        self.logger.info(f"Расчет СКП модели {self.name} завершен и загружен в БД")
+        self.logger.info(f"Расчет СКП модели {self.name} завершен")
 
     def plot(self, *args, plotter=SegmentModelPlotly, **kwargs):
         plotter = plotter(*args, **kwargs)
