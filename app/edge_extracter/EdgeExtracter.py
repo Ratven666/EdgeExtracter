@@ -1,4 +1,5 @@
 import cv2
+import ezdxf
 from matplotlib import pyplot as plt
 
 from app.scan.Scan import Scan
@@ -57,6 +58,16 @@ class EdgeExtracter:
             for point in contour:
                 scan.add_point(point)
         return scan
+
+    def export_to_dxf(self, file_path):
+        doc = ezdxf.new('R2010')
+        msp = doc.modelspace()
+        for contour in self.contours_points:
+            xyz_contour = []
+            for point in contour:
+                xyz_contour.append([point.x, point.y, point.z])
+            msp.add_polyline3d(xyz_contour)
+        doc.saveas(file_path)
 
     def show_contours(self):
         image = cv2.imread(self.index_image_path, cv2.IMREAD_GRAYSCALE)
