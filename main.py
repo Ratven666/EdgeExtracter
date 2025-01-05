@@ -56,8 +56,9 @@ ee = EdgeExtracter(index_image_path='SlopeFullIndex.tiff',
                    dem_model=dem_geotif)
 
 ee_scan = ee.get_contours_scan()
+ee.export_to_dxf("Count_dxf.dxf")
 ee_scan.export_data_to_file("contours5.txt")
-ee_scan.plot()
+# ee_scan.plot()
 # ee.show_contours()
 
 
