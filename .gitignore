@@ -142,3 +142,7 @@ src/scan_from_dem.txt
 *.tiff
 
 *.png
+
+*.dxf
+
+*.txt

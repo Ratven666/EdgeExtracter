@@ -1,6 +1,6 @@
 import cv2
 
-from app.edge_extracter.img_filters.ImageFilterABC import ImageFilterABC
+from app.edge_extractor.img_filters.ImageFilterABC import ImageFilterABC
 
 
 class BilateralImgFilter(ImageFilterABC):
@@ -23,5 +23,4 @@ if __name__ == "__main__":
                                  d=5,
                                  sigma_color=75,
                                  sigma_space=75)
-    filter_.show_contours()
     filter_.show_filtered_and_base_images()

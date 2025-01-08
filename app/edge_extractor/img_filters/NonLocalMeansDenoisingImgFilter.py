@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from skimage import io, restoration
 
-from app.edge_extracter.img_filters.ImageFilterABC import ImageFilterABC
+from app.edge_extractor.img_filters.ImageFilterABC import ImageFilterABC
 
 
 class NonLocalMeansDenoisingImgFilter(ImageFilterABC):
@@ -25,16 +25,16 @@ class NonLocalMeansDenoisingImgFilter(ImageFilterABC):
                                                        patch_distance=self.patch_distance)
         if filtered_img_sk.dtype == np.float64 or filtered_img_sk.dtype == np.float32:
             image_sk = (filtered_img_sk * 255).astype(np.uint8)
-
         # Если изображение в формате RGB, преобразуем его в BGR для OpenCV
-        if len(image_sk.shape) == 3 and image_sk.shape[2] == 3:  # Проверка на RGB
-            image_cv = cv2.cvtColor(image_sk, cv2.COLOR_RGB2BGR)
+            if len(image_sk.shape) == 3 and image_sk.shape[2] == 3:  # Проверка на RGB
+                image_cv = cv2.cvtColor(image_sk, cv2.COLOR_RGB2BGR)
+            else:
+                image_cv = image_sk  # Если изображение в градациях серого, преобразование не требуется
         else:
-            image_cv = image_sk  # Если изображение в градациях серого, преобразование не требуется
+            image_cv = filtered_img_sk
         return image_cv
 
 
 if __name__ == "__main__":
     filter_ = NonLocalMeansDenoisingImgFilter(image_path="../../../SlopeFullIndex.tiff")
-    # filter_.show_contours()
     filter_.show_filtered_and_base_images()

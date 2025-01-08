@@ -1,7 +1,9 @@
 from app.dem_models.bi_model.BiModel import BiModel
 from app.dem_models.dem_geotif.DemGeoTifModel import DemGeoTifModel
 from app.dem_models.dem_model.DemModel import DemModel
-from app.edge_extracter.EdgeExtracter import EdgeExtracter
+from app.edge_extractor.FinalEdgeExporter import FinalEdgeExporter
+from app.edge_extractor.contours_extractors.CV2ContoursExtractor import CV2ContoursExtractor
+from app.edge_extractor.edges_extractors.skimg_ee.CannySKImgEdgesExtractor import CannySKImgEdgesExtractor
 from app.indexes.TerrainCurvaturesIndexes import MaxAbsCurvatureIndex, SlopeFullIndex, MeanCurvatureIndex, \
     ProfileCurvatureIndex, PlaneCurvatureIndex
 from app.indexes.TerrainRuggednessIndexes import TerrainRuggednessIndexABSValue, TerrainRuggednessIndexClassic, \
@@ -52,12 +54,17 @@ dem_geotif = DemModel(voxel_model=vm)
 tri = SlopeFullIndex(dem_model=dem_geotif, abs_value=True, full_neighbours=False)
 tri.save_like_img(file_path='SlopeFullIndex.tiff')
 
-ee = EdgeExtracter(index_image_path='SlopeFullIndex.tiff',
-                   dem_model=dem_geotif)
+ce = CannySKImgEdgesExtractor(image_path="SlopeFullIndex.tiff", sigma=1.5)
+ce.save_edges_image()
+ee = CV2ContoursExtractor(image_path="edges.tiff", background_image_path="SlopeFullIndex.tiff")
+contours = ee.contours
 
-ee_scan = ee.get_contours_scan()
-ee.export_to_dxf("Count_dxf.dxf")
-ee_scan.export_data_to_file("contours5.txt")
+edge_exporter = FinalEdgeExporter(contours=contours, dem_model=dem_geotif)
+ee_scan = edge_exporter.get_contours_scan()
+ee_scan.export_data_to_file("counter_scan.txt")
+edge_exporter.export_to_dxf("Count_dxf.dxf")
+ee_scan.plot()
+
 # ee_scan.plot()
 # ee.show_contours()
 

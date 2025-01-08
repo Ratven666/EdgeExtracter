@@ -1,6 +1,6 @@
 import cv2
 
-from app.edge_extracter.img_filters.ImageFilterABC import ImageFilterABC
+from app.edge_extractor.img_filters.ImageFilterABC import ImageFilterABC
 
 
 class MedianBlurImgFilter(ImageFilterABC):

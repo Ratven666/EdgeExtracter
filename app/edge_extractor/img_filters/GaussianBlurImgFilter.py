@@ -1,6 +1,6 @@
 import cv2
 
-from app.edge_extracter.img_filters.ImageFilterABC import ImageFilterABC
+from app.edge_extractor.img_filters.ImageFilterABC import ImageFilterABC
 
 
 class GaussianBlurImgFilter(ImageFilterABC):
@@ -21,5 +21,4 @@ class GaussianBlurImgFilter(ImageFilterABC):
 if __name__ == "__main__":
     filter_ = GaussianBlurImgFilter(image_path="../../../SlopeFullIndex.tiff",
                                     ksize=5)
-    filter_.show_contours()
     filter_.show_filtered_and_base_images()
