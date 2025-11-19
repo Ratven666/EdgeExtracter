@@ -145,4 +145,7 @@ src/scan_from_dem.txt
 
 *.dxf
 
-*.txt
+
+src/PCLD.las
+
+src/

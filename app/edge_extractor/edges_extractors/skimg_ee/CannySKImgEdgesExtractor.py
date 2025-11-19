@@ -1,4 +1,4 @@
-from skimage import feature
+from skimage import feature, color
 
 from app.edge_extractor.edges_extractors.skimg_ee.SKImageEdgesExtractorABC import SKImageEdgesExtractorABC
 
@@ -10,7 +10,12 @@ class CannySKImgEdgesExtractor(SKImageEdgesExtractorABC):
         super().__init__(image_path)
 
     def _get_edges(self):
-        edges = feature.canny(self.base_image, sigma=self.sigma)
+        try:
+            image_rgb = self.base_image[:, :, :3]
+            gray_image = color.rgb2gray(image_rgb)
+        except IndexError:
+            gray_image = self.base_image
+        edges = feature.canny(gray_image, sigma=self.sigma)
         return edges
 
 

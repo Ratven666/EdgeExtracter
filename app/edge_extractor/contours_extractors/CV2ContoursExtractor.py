@@ -7,6 +7,7 @@ from app.edge_extractor.contours_extractors.ContoursExtractorABC import Contours
 from app.edge_extractor.edges_extractors.skimg_ee.CannySKImgEdgesExtractor import CannySKImgEdgesExtractor
 from app.edge_extractor.edges_extractors.skimg_ee.PrewittSKImgEdgesExtractor import PrewittSKImgEdgesExtractor
 from app.edge_extractor.edges_extractors.skimg_ee.SobelSKImgEdgesExtractor import SobelSKImgEdgesExtractor
+from app.edge_extractor.img_filters.NonLocalMeansDenoisingImgFilter import NonLocalMeansDenoisingImgFilter
 
 
 class CV2ContoursExtractor(ContoursExtractorABC):
@@ -40,11 +41,16 @@ class CV2ContoursExtractor(ContoursExtractorABC):
 
 
 if __name__ == "__main__":
-    ce = CannySKImgEdgesExtractor(image_path="../../../SlopeFullIndex.tiff", sigma=1.5)
-    # ce = SobelSKImgEdgesExtractor(image_path="../../../SlopeFullIndex.tiff")
-    # ce = PrewittSKImgEdgesExtractor(image_path="../../../SlopeFullIndex.tiff")
+
+    filter_ = NonLocalMeansDenoisingImgFilter(image_path="../../../SlopeFullIndex.tiff",
+                                              h=0.1, fast_mode=True, patch_size=11, patch_distance=3)
+    # filter_.show_filtered_and_base_images()
+    filter_.save_filtered_image("filter.tiff")
+    # ce = CannySKImgEdgesExtractor(image_path="../../../SlopeFullIndex.tiff", sigma=1.5)
+    ce = CannySKImgEdgesExtractor(image_path="filter.tiff", sigma=2)
+
 
     ce.save_edges_image()
     ee = CV2ContoursExtractor(image_path="edges.tiff", background_image_path="../../../SlopeFullIndex.tiff")
-    print(ee.contours)
+    # # print(ee.contours)
     ee.show_contours()
